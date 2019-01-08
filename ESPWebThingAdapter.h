@@ -156,6 +156,12 @@ private:
     ThingProperty* property = device->firstProperty;
     while (property != nullptr) {
       JsonObject& prop = props.createNestedObject(property->id);
+      if (property->id != nullptr) {
+        prop["title"] = property->id;
+      }
+      if (property->description != nullptr) {
+        prop["description"] = property->description;
+      }
       switch (property->type) {
       case BOOLEAN:
         prop["type"] = "boolean";
